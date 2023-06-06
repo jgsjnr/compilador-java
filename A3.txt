@@ -1,0 +1,7 @@
+inicio {
+    int inteiro = 1;
+    {
+        letra a = a;
+    }
+    };
+fim;
