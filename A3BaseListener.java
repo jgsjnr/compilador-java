@@ -104,6 +104,18 @@ public class A3BaseListener implements A3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFor(A3Parser.ForContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFor(A3Parser.ForContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterComp(A3Parser.CompContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -159,18 +171,6 @@ public class A3BaseListener implements A3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWhile(A3Parser.WhileContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFor(A3Parser.ForContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFor(A3Parser.ForContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

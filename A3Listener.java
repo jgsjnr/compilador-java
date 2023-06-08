@@ -81,6 +81,16 @@ public interface A3Listener extends ParseTreeListener {
 	 */
 	void exitCond(A3Parser.CondContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A3Parser#for}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor(A3Parser.ForContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#for}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor(A3Parser.ForContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A3Parser#comp}.
 	 * @param ctx the parse tree
 	 */
@@ -130,14 +140,4 @@ public interface A3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWhile(A3Parser.WhileContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A3Parser#for}.
-	 * @param ctx the parse tree
-	 */
-	void enterFor(A3Parser.ForContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A3Parser#for}.
-	 * @param ctx the parse tree
-	 */
-	void exitFor(A3Parser.ForContext ctx);
 }

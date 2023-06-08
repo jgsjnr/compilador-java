@@ -17,11 +17,13 @@ declaracoes: (declararVar | bloco | cond | dowhile | atrbVar | while | for)*;
 
 declararVar: tipo ID OP_ATR? VL? PV {w.variavel($ID.text, $tipo.text, 0, $VL.text);};
 
-atrbVar: ID OP_ATR VL {w.atrbVar($ID.text, $VL.text);};
+atrbVar: ID OP_ATR VL PV? {w.atrbVar($ID.text, $VL.text, $PV.text);};
 
 tipo: ('normal' | 'letra' | 'quebrado' | 'ideia');
 
 cond: SE AP comp FP {w.se();} bloco;
+
+for: PARA AP {w.para();} declararVar comp atrbVar FP {w.fechaCond($FP.text);} bloco;
 
 comp: pri OPREL seg PV? {w.comp($pri.text, $OPREL.text, $seg.text, $PV.text);};
 
@@ -29,11 +31,11 @@ pri: VL;
 
 seg: VL;
 
-dowhile: DO {w.faca();} bloco WHILE AP comp FP PV? {w.enquanto();};
+dowhile: DO {w.faca();} bloco WHILE AP comp FP PV? {w.enquanto(); w.fechaCond($PV.text);};
 
-while: WHILE AP comp FP bloco PV? {w.enquanto();};
+while: WHILE AP comp FP {w.enquanto();} bloco PV? {w.fechaCond($PV.text);};
 
-for: PARA AP {w.para();} declararVar comp PV FP bloco;
+
 
 SOMA: '+';
 INICIO: 'inicio';
@@ -51,7 +53,7 @@ FC: '}' ;
 AP: '(' ;
 FP: ')' ;
 PV: ';' ;
-ID: AZMIN(AZMIN|AZMAI|DIGIT|'_')*;
+ID: AZMIN+(AZMIN|AZMAI|DIGIT|'_')*;
 VL: ID | DIGIT;
 WS: WHITESPACE+ -> skip;
 

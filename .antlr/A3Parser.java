@@ -25,12 +25,12 @@ public class A3Parser extends Parser {
 		FP=19, PV=20, ID=21, VL=22, WS=23;
 	public static final int
 		RULE_start = 0, RULE_bloco = 1, RULE_declaracoes = 2, RULE_declararVar = 3, 
-		RULE_atrbVar = 4, RULE_tipo = 5, RULE_cond = 6, RULE_comp = 7, RULE_pri = 8, 
-		RULE_seg = 9, RULE_dowhile = 10, RULE_while = 11, RULE_for = 12;
+		RULE_atrbVar = 4, RULE_tipo = 5, RULE_cond = 6, RULE_for = 7, RULE_comp = 8, 
+		RULE_pri = 9, RULE_seg = 10, RULE_dowhile = 11, RULE_while = 12;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"start", "bloco", "declaracoes", "declararVar", "atrbVar", "tipo", "cond", 
-			"comp", "pri", "seg", "dowhile", "while", "for"
+			"for", "comp", "pri", "seg", "dowhile", "while"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -399,9 +399,11 @@ public class A3Parser extends Parser {
 	public static class AtrbVarContext extends ParserRuleContext {
 		public Token ID;
 		public Token VL;
+		public Token PV;
 		public TerminalNode ID() { return getToken(A3Parser.ID, 0); }
 		public TerminalNode OP_ATR() { return getToken(A3Parser.OP_ATR, 0); }
 		public TerminalNode VL() { return getToken(A3Parser.VL, 0); }
+		public TerminalNode PV() { return getToken(A3Parser.PV, 0); }
 		public AtrbVarContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -411,6 +413,7 @@ public class A3Parser extends Parser {
 	public final AtrbVarContext atrbVar() throws RecognitionException {
 		AtrbVarContext _localctx = new AtrbVarContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_atrbVar);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -420,7 +423,17 @@ public class A3Parser extends Parser {
 			match(OP_ATR);
 			setState(69);
 			((AtrbVarContext)_localctx).VL = match(VL);
-			w.atrbVar((((AtrbVarContext)_localctx).ID!=null?((AtrbVarContext)_localctx).ID.getText():null), (((AtrbVarContext)_localctx).VL!=null?((AtrbVarContext)_localctx).VL.getText():null));
+			setState(71);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==PV) {
+				{
+				setState(70);
+				((AtrbVarContext)_localctx).PV = match(PV);
+				}
+			}
+
+			w.atrbVar((((AtrbVarContext)_localctx).ID!=null?((AtrbVarContext)_localctx).ID.getText():null), (((AtrbVarContext)_localctx).VL!=null?((AtrbVarContext)_localctx).VL.getText():null), (((AtrbVarContext)_localctx).PV!=null?((AtrbVarContext)_localctx).PV.getText():null));
 			}
 		}
 		catch (RecognitionException re) {
@@ -448,7 +461,7 @@ public class A3Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(72);
+			setState(75);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -493,16 +506,74 @@ public class A3Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(74);
-			match(SE);
-			setState(75);
-			match(AP);
-			setState(76);
-			comp();
 			setState(77);
+			match(SE);
+			setState(78);
+			match(AP);
+			setState(79);
+			comp();
+			setState(80);
 			match(FP);
 			w.se();
-			setState(79);
+			setState(82);
+			bloco();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ForContext extends ParserRuleContext {
+		public Token FP;
+		public TerminalNode PARA() { return getToken(A3Parser.PARA, 0); }
+		public TerminalNode AP() { return getToken(A3Parser.AP, 0); }
+		public DeclararVarContext declararVar() {
+			return getRuleContext(DeclararVarContext.class,0);
+		}
+		public CompContext comp() {
+			return getRuleContext(CompContext.class,0);
+		}
+		public AtrbVarContext atrbVar() {
+			return getRuleContext(AtrbVarContext.class,0);
+		}
+		public TerminalNode FP() { return getToken(A3Parser.FP, 0); }
+		public BlocoContext bloco() {
+			return getRuleContext(BlocoContext.class,0);
+		}
+		public ForContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_for; }
+	}
+
+	public final ForContext for() throws RecognitionException {
+		ForContext _localctx = new ForContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_for);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(84);
+			match(PARA);
+			setState(85);
+			match(AP);
+			w.para();
+			setState(87);
+			declararVar();
+			setState(88);
+			comp();
+			setState(89);
+			atrbVar();
+			setState(90);
+			((ForContext)_localctx).FP = match(FP);
+			w.fechaCond((((ForContext)_localctx).FP!=null?((ForContext)_localctx).FP.getText():null));
+			setState(92);
 			bloco();
 			}
 		}
@@ -538,26 +609,27 @@ public class A3Parser extends Parser {
 
 	public final CompContext comp() throws RecognitionException {
 		CompContext _localctx = new CompContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_comp);
+		enterRule(_localctx, 16, RULE_comp);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81);
+			setState(94);
 			((CompContext)_localctx).pri = pri();
-			setState(82);
+			setState(95);
 			((CompContext)_localctx).OPREL = match(OPREL);
-			setState(83);
+			setState(96);
 			((CompContext)_localctx).seg = seg();
-			setState(85);
+			setState(98);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
-			case 1:
+			_la = _input.LA(1);
+			if (_la==PV) {
 				{
-				setState(84);
+				setState(97);
 				((CompContext)_localctx).PV = match(PV);
 				}
-				break;
 			}
+
 			w.comp((((CompContext)_localctx).pri!=null?_input.getText(((CompContext)_localctx).pri.start,((CompContext)_localctx).pri.stop):null), (((CompContext)_localctx).OPREL!=null?((CompContext)_localctx).OPREL.getText():null), (((CompContext)_localctx).seg!=null?_input.getText(((CompContext)_localctx).seg.start,((CompContext)_localctx).seg.stop):null), (((CompContext)_localctx).PV!=null?((CompContext)_localctx).PV.getText():null));
 			}
 		}
@@ -582,11 +654,11 @@ public class A3Parser extends Parser {
 
 	public final PriContext pri() throws RecognitionException {
 		PriContext _localctx = new PriContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_pri);
+		enterRule(_localctx, 18, RULE_pri);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
+			setState(102);
 			match(VL);
 			}
 		}
@@ -611,11 +683,11 @@ public class A3Parser extends Parser {
 
 	public final SegContext seg() throws RecognitionException {
 		SegContext _localctx = new SegContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_seg);
+		enterRule(_localctx, 20, RULE_seg);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(91);
+			setState(104);
 			match(VL);
 			}
 		}
@@ -631,6 +703,7 @@ public class A3Parser extends Parser {
 	}
 
 	public static class DowhileContext extends ParserRuleContext {
+		public Token PV;
 		public TerminalNode DO() { return getToken(A3Parser.DO, 0); }
 		public BlocoContext bloco() {
 			return getRuleContext(BlocoContext.class,0);
@@ -650,35 +723,35 @@ public class A3Parser extends Parser {
 
 	public final DowhileContext dowhile() throws RecognitionException {
 		DowhileContext _localctx = new DowhileContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_dowhile);
+		enterRule(_localctx, 22, RULE_dowhile);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(93);
+			setState(106);
 			match(DO);
 			w.faca();
-			setState(95);
+			setState(108);
 			bloco();
-			setState(96);
+			setState(109);
 			match(WHILE);
-			setState(97);
+			setState(110);
 			match(AP);
-			setState(98);
+			setState(111);
 			comp();
-			setState(99);
+			setState(112);
 			match(FP);
-			setState(101);
+			setState(114);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==PV) {
 				{
-				setState(100);
-				match(PV);
+				setState(113);
+				((DowhileContext)_localctx).PV = match(PV);
 				}
 			}
 
-			w.enquanto();
+			w.enquanto(); w.fechaCond((((DowhileContext)_localctx).PV!=null?((DowhileContext)_localctx).PV.getText():null));
 			}
 		}
 		catch (RecognitionException re) {
@@ -693,6 +766,7 @@ public class A3Parser extends Parser {
 	}
 
 	public static class WhileContext extends ParserRuleContext {
+		public Token PV;
 		public TerminalNode WHILE() { return getToken(A3Parser.WHILE, 0); }
 		public TerminalNode AP() { return getToken(A3Parser.AP, 0); }
 		public CompContext comp() {
@@ -711,86 +785,33 @@ public class A3Parser extends Parser {
 
 	public final WhileContext while() throws RecognitionException {
 		WhileContext _localctx = new WhileContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_while);
+		enterRule(_localctx, 24, RULE_while);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
+			setState(118);
 			match(WHILE);
-			setState(106);
+			setState(119);
 			match(AP);
-			setState(107);
+			setState(120);
 			comp();
-			setState(108);
+			setState(121);
 			match(FP);
-			setState(109);
+			w.enquanto();
+			setState(123);
 			bloco();
-			setState(111);
+			setState(125);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==PV) {
 				{
-				setState(110);
-				match(PV);
+				setState(124);
+				((WhileContext)_localctx).PV = match(PV);
 				}
 			}
 
-			w.enquanto();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ForContext extends ParserRuleContext {
-		public TerminalNode PARA() { return getToken(A3Parser.PARA, 0); }
-		public TerminalNode AP() { return getToken(A3Parser.AP, 0); }
-		public DeclararVarContext declararVar() {
-			return getRuleContext(DeclararVarContext.class,0);
-		}
-		public CompContext comp() {
-			return getRuleContext(CompContext.class,0);
-		}
-		public TerminalNode PV() { return getToken(A3Parser.PV, 0); }
-		public TerminalNode FP() { return getToken(A3Parser.FP, 0); }
-		public BlocoContext bloco() {
-			return getRuleContext(BlocoContext.class,0);
-		}
-		public ForContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_for; }
-	}
-
-	public final ForContext for() throws RecognitionException {
-		ForContext _localctx = new ForContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_for);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(115);
-			match(PARA);
-			setState(116);
-			match(AP);
-			w.para();
-			setState(118);
-			declararVar();
-			setState(119);
-			comp();
-			setState(120);
-			match(PV);
-			setState(121);
-			match(FP);
-			setState(122);
-			bloco();
+			w.fechaCond((((WhileContext)_localctx).PV!=null?((WhileContext)_localctx).PV.getText():null));
 			}
 		}
 		catch (RecognitionException re) {
@@ -805,36 +826,38 @@ public class A3Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31\177\4\2\t\2\4"+
-		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
-		"\13\4\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\5\3+\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4\66\n"+
-		"\4\f\4\16\49\13\4\3\5\3\5\3\5\5\5>\n\5\3\5\5\5A\n\5\3\5\3\5\3\5\3\6\3"+
-		"\6\3\6\3\6\3\6\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\5\t"+
-		"X\n\t\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\fh\n"+
-		"\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\5\rr\n\r\3\r\3\r\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\2\2\17\2\4\6\b\n\f\16\20\22\24\26\30\32"+
-		"\2\3\3\2\3\6\2~\2\34\3\2\2\2\4$\3\2\2\2\6\67\3\2\2\2\b:\3\2\2\2\nE\3\2"+
-		"\2\2\fJ\3\2\2\2\16L\3\2\2\2\20S\3\2\2\2\22[\3\2\2\2\24]\3\2\2\2\26_\3"+
-		"\2\2\2\30k\3\2\2\2\32u\3\2\2\2\34\35\b\2\1\2\35\36\7\b\2\2\36\37\b\2\1"+
-		"\2\37 \5\4\3\2 !\7\t\2\2!\"\b\2\1\2\"#\7\26\2\2#\3\3\2\2\2$%\7\22\2\2"+
-		"%&\b\3\1\2&\'\5\6\4\2\'(\7\23\2\2(*\b\3\1\2)+\7\26\2\2*)\3\2\2\2*+\3\2"+
-		"\2\2+,\3\2\2\2,-\b\3\1\2-\5\3\2\2\2.\66\5\b\5\2/\66\5\4\3\2\60\66\5\16"+
-		"\b\2\61\66\5\26\f\2\62\66\5\n\6\2\63\66\5\30\r\2\64\66\5\32\16\2\65.\3"+
-		"\2\2\2\65/\3\2\2\2\65\60\3\2\2\2\65\61\3\2\2\2\65\62\3\2\2\2\65\63\3\2"+
-		"\2\2\65\64\3\2\2\2\669\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28\7\3\2\2\29\67"+
-		"\3\2\2\2:;\5\f\7\2;=\7\27\2\2<>\7\f\2\2=<\3\2\2\2=>\3\2\2\2>@\3\2\2\2"+
-		"?A\7\30\2\2@?\3\2\2\2@A\3\2\2\2AB\3\2\2\2BC\7\26\2\2CD\b\5\1\2D\t\3\2"+
-		"\2\2EF\7\27\2\2FG\7\f\2\2GH\7\30\2\2HI\b\6\1\2I\13\3\2\2\2JK\t\2\2\2K"+
-		"\r\3\2\2\2LM\7\20\2\2MN\7\24\2\2NO\5\20\t\2OP\7\25\2\2PQ\b\b\1\2QR\5\4"+
-		"\3\2R\17\3\2\2\2ST\5\22\n\2TU\7\n\2\2UW\5\24\13\2VX\7\26\2\2WV\3\2\2\2"+
-		"WX\3\2\2\2XY\3\2\2\2YZ\b\t\1\2Z\21\3\2\2\2[\\\7\30\2\2\\\23\3\2\2\2]^"+
-		"\7\30\2\2^\25\3\2\2\2_`\7\16\2\2`a\b\f\1\2ab\5\4\3\2bc\7\r\2\2cd\7\24"+
-		"\2\2de\5\20\t\2eg\7\25\2\2fh\7\26\2\2gf\3\2\2\2gh\3\2\2\2hi\3\2\2\2ij"+
-		"\b\f\1\2j\27\3\2\2\2kl\7\r\2\2lm\7\24\2\2mn\5\20\t\2no\7\25\2\2oq\5\4"+
-		"\3\2pr\7\26\2\2qp\3\2\2\2qr\3\2\2\2rs\3\2\2\2st\b\r\1\2t\31\3\2\2\2uv"+
-		"\7\17\2\2vw\7\24\2\2wx\b\16\1\2xy\5\b\5\2yz\5\20\t\2z{\7\26\2\2{|\7\25"+
-		"\2\2|}\5\4\3\2}\33\3\2\2\2\n*\65\67=@Wgq";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31\u0084\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3"+
+		"\3\3\3\3\3\3\3\3\3\5\3+\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4\66"+
+		"\n\4\f\4\16\49\13\4\3\5\3\5\3\5\5\5>\n\5\3\5\5\5A\n\5\3\5\3\5\3\5\3\6"+
+		"\3\6\3\6\3\6\5\6J\n\6\3\6\3\6\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t"+
+		"\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\5\ne\n\n\3\n\3\n"+
+		"\3\13\3\13\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\5\ru\n\r\3\r\3\r\3"+
+		"\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u0080\n\16\3\16\3\16\3\16\2\2\17"+
+		"\2\4\6\b\n\f\16\20\22\24\26\30\32\2\3\3\2\3\6\2\u0084\2\34\3\2\2\2\4$"+
+		"\3\2\2\2\6\67\3\2\2\2\b:\3\2\2\2\nE\3\2\2\2\fM\3\2\2\2\16O\3\2\2\2\20"+
+		"V\3\2\2\2\22`\3\2\2\2\24h\3\2\2\2\26j\3\2\2\2\30l\3\2\2\2\32x\3\2\2\2"+
+		"\34\35\b\2\1\2\35\36\7\b\2\2\36\37\b\2\1\2\37 \5\4\3\2 !\7\t\2\2!\"\b"+
+		"\2\1\2\"#\7\26\2\2#\3\3\2\2\2$%\7\22\2\2%&\b\3\1\2&\'\5\6\4\2\'(\7\23"+
+		"\2\2(*\b\3\1\2)+\7\26\2\2*)\3\2\2\2*+\3\2\2\2+,\3\2\2\2,-\b\3\1\2-\5\3"+
+		"\2\2\2.\66\5\b\5\2/\66\5\4\3\2\60\66\5\16\b\2\61\66\5\30\r\2\62\66\5\n"+
+		"\6\2\63\66\5\32\16\2\64\66\5\20\t\2\65.\3\2\2\2\65/\3\2\2\2\65\60\3\2"+
+		"\2\2\65\61\3\2\2\2\65\62\3\2\2\2\65\63\3\2\2\2\65\64\3\2\2\2\669\3\2\2"+
+		"\2\67\65\3\2\2\2\678\3\2\2\28\7\3\2\2\29\67\3\2\2\2:;\5\f\7\2;=\7\27\2"+
+		"\2<>\7\f\2\2=<\3\2\2\2=>\3\2\2\2>@\3\2\2\2?A\7\30\2\2@?\3\2\2\2@A\3\2"+
+		"\2\2AB\3\2\2\2BC\7\26\2\2CD\b\5\1\2D\t\3\2\2\2EF\7\27\2\2FG\7\f\2\2GI"+
+		"\7\30\2\2HJ\7\26\2\2IH\3\2\2\2IJ\3\2\2\2JK\3\2\2\2KL\b\6\1\2L\13\3\2\2"+
+		"\2MN\t\2\2\2N\r\3\2\2\2OP\7\20\2\2PQ\7\24\2\2QR\5\22\n\2RS\7\25\2\2ST"+
+		"\b\b\1\2TU\5\4\3\2U\17\3\2\2\2VW\7\17\2\2WX\7\24\2\2XY\b\t\1\2YZ\5\b\5"+
+		"\2Z[\5\22\n\2[\\\5\n\6\2\\]\7\25\2\2]^\b\t\1\2^_\5\4\3\2_\21\3\2\2\2`"+
+		"a\5\24\13\2ab\7\n\2\2bd\5\26\f\2ce\7\26\2\2dc\3\2\2\2de\3\2\2\2ef\3\2"+
+		"\2\2fg\b\n\1\2g\23\3\2\2\2hi\7\30\2\2i\25\3\2\2\2jk\7\30\2\2k\27\3\2\2"+
+		"\2lm\7\16\2\2mn\b\r\1\2no\5\4\3\2op\7\r\2\2pq\7\24\2\2qr\5\22\n\2rt\7"+
+		"\25\2\2su\7\26\2\2ts\3\2\2\2tu\3\2\2\2uv\3\2\2\2vw\b\r\1\2w\31\3\2\2\2"+
+		"xy\7\r\2\2yz\7\24\2\2z{\5\22\n\2{|\7\25\2\2|}\b\16\1\2}\177\5\4\3\2~\u0080"+
+		"\7\26\2\2\177~\3\2\2\2\177\u0080\3\2\2\2\u0080\u0081\3\2\2\2\u0081\u0082"+
+		"\b\16\1\2\u0082\33\3\2\2\2\13*\65\67=@Idt\177";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
