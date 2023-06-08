@@ -3,35 +3,39 @@ grammar A3;
 @header { 
     import java.util.*;
     import java.io.*;
-    import java.util.ArrayList;
-    import java.io.FileWriter;
-    import java.io.IOException;
 }
 @members { 
     ControleVariavel cv = new ControleVariavel();
     Saida w = new Saida(cv);
 }
 
-start: bloco;
+start: {w.limpaCodigo();} 'inicio' {w.printInicio();} bloco 'fim' {w.printFim();} PV;
 
-bloco: AC {w.bloco($AC.text);} declaracoes FC {w.bloco($FC.text);} PV {w.bloco($PV.text);};
+bloco: AC {w.bloco($AC.text);} declaracoes FC {w.bloco($FC.text);} PV? {w.bloco($PV.text);};
 
-declaracoes: (declararVariavel | bloco | cond)*;
+declaracoes: (declararVar | bloco | cond | dowhile | atrbVar | while | for)*;
 
-declararVariavel: tipo ID PV {w.variavel($ID.text, $tipo.text, 0);};
+declararVar: tipo ID OP_ATR? VL? PV {w.variavel($ID.text, $tipo.text, 0, $VL.text);};
 
-attbVariavel: ID OP_ATR VL;
+atrbVar: ID OP_ATR VL {w.atrbVar($ID.text, $VL.text);};
 
 tipo: ('normal' | 'letra' | 'quebrado' | 'ideia');
 
-cond: SE AP comp FP {w.se();};
+cond: SE AP comp FP {w.se();} bloco;
 
-dowhile: DO bloco WHILE AC comp FC;
+comp: pri OPREL seg PV? {w.comp($pri.text, $OPREL.text, $seg.text, $PV.text);};
 
-for: PARA AP declararVariavel PV comp PV attbVariavel FP;
+pri: VL;
 
-comp: VL OPREL VL2 {w.comp($VL.text, $OPREL.text, $VL2.text);};
+seg: VL;
 
+dowhile: DO {w.faca();} bloco WHILE AP comp FP PV? {w.enquanto();};
+
+while: WHILE AP comp FP bloco PV? {w.enquanto();};
+
+for: PARA AP {w.para();} declararVar comp PV FP bloco;
+
+SOMA: '+';
 INICIO: 'inicio';
 FIM: 'fim';
 OPREL: '>' | '<' | '>=' | '<=' | '==' | '!=' ;
@@ -47,10 +51,8 @@ FC: '}' ;
 AP: '(' ;
 FP: ')' ;
 PV: ';' ;
-ID: AZMIN(AZMIN|AZMAI|DIGIT)*;
-VL: ID | NUM;
-VL2: ID | NUM;
-NUM: DIGIT+;
+ID: AZMIN(AZMIN|AZMAI|DIGIT|'_')*;
+VL: ID | DIGIT;
 WS: WHITESPACE+ -> skip;
 
 fragment AZMIN: [a-z];

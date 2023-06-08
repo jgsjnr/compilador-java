@@ -1,4 +1,17 @@
-{
+inicio {
     normal inteiro;
-    se( >= )
-};
+    se(1 > 2){ 
+        letra chave; 
+        };
+    do{
+        letra b;
+    }enquanto(3 > 4);
+
+    enquanto(1 >= 5){
+        b = 1
+    }
+    para(normal i = 0; 2 > 3; ){
+        
+    }
+}
+fim;

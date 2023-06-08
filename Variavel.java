@@ -4,10 +4,10 @@
  */
 public class Variavel {
     private String nome;
-    private int tipo;
+    private String tipo;
     private int escopo;
 
-    public Variavel(String nome, int tipo, int escopo, String valor) {
+    public Variavel(String nome, String tipo, int escopo) {
         this.nome = nome;
         this.tipo = tipo;
         this.escopo = escopo;
@@ -24,11 +24,11 @@ public class Variavel {
         this.nome = nome;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

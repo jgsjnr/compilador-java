@@ -2,9 +2,6 @@
  
     import java.util.*;
     import java.io.*;
-    import java.util.ArrayList;
-    import java.io.FileWriter;
-    import java.io.IOException;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -59,25 +56,25 @@ public class A3BaseListener implements A3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclararVariavel(A3Parser.DeclararVariavelContext ctx) { }
+	@Override public void enterDeclararVar(A3Parser.DeclararVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclararVariavel(A3Parser.DeclararVariavelContext ctx) { }
+	@Override public void exitDeclararVar(A3Parser.DeclararVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttbVariavel(A3Parser.AttbVariavelContext ctx) { }
+	@Override public void enterAtrbVar(A3Parser.AtrbVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttbVariavel(A3Parser.AttbVariavelContext ctx) { }
+	@Override public void exitAtrbVar(A3Parser.AtrbVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -107,6 +104,42 @@ public class A3BaseListener implements A3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterComp(A3Parser.CompContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitComp(A3Parser.CompContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPri(A3Parser.PriContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPri(A3Parser.PriContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSeg(A3Parser.SegContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSeg(A3Parser.SegContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDowhile(A3Parser.DowhileContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -119,6 +152,18 @@ public class A3BaseListener implements A3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterWhile(A3Parser.WhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhile(A3Parser.WhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFor(A3Parser.ForContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -126,18 +171,6 @@ public class A3BaseListener implements A3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFor(A3Parser.ForContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterComp(A3Parser.CompContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitComp(A3Parser.CompContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
