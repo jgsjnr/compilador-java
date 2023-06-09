@@ -9,15 +9,15 @@ grammar A3;
     Saida w = new Saida(cv);
 }
 
-start: {w.limpaCodigo();} 'inicio' {w.printInicio();} bloco 'fim' {w.printFim();} PV;
+start: {w.limpaCodigo();} 'inicio' {w.printInicio();} bloco 'fim' {w.printFim();} PV {w.erros();};
 
-bloco: AC {w.bloco($AC.text);} declaracoes FC {w.bloco($FC.text);} PV? {w.bloco($PV.text);};
+bloco: {w.incEsco();} AC {w.bloco($AC.text);} declaracoes FC {w.bloco($FC.text);} PV? {w.bloco($PV.text);} {w.decEsco();};
 
 declaracoes: (declararVar | bloco | cond | dowhile | atrbVar | while | for)*;
 
-declararVar: tipo ID OP_ATR? VL? PV {w.variavel($ID.text, $tipo.text, 0, $VL.text);};
+declararVar: tipo ID OP_ATR? pri? PV {w.variavel($ID.text, $tipo.text, $pri.text);};
 
-atrbVar: ID OP_ATR VL PV? {w.atrbVar($ID.text, $VL.text, $PV.text);};
+atrbVar: ID OP_ATR pri PV? {w.atrbVar($ID.text, $pri.text, $PV.text);};
 
 tipo: ('normal' | 'letra' | 'quebrado' | 'ideia');
 
@@ -27,9 +27,9 @@ for: PARA AP {w.para();} declararVar comp atrbVar FP {w.fechaCond($FP.text);} bl
 
 comp: pri OPREL seg PV? {w.comp($pri.text, $OPREL.text, $seg.text, $PV.text);};
 
-pri: VL;
+pri: (ID | DG);
 
-seg: VL;
+seg: (ID | DG);
 
 dowhile: DO {w.faca();} bloco WHILE AP comp FP PV? {w.enquanto(); w.fechaCond($PV.text);};
 
@@ -54,6 +54,7 @@ AP: '(' ;
 FP: ')' ;
 PV: ';' ;
 ID: AZMIN+(AZMIN|AZMAI|DIGIT|'_')*;
+DG: DIGIT+;
 VL: ID | DIGIT;
 WS: WHITESPACE+ -> skip;
 

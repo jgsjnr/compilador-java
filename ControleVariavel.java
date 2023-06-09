@@ -3,6 +3,7 @@ import java.util.ArrayList;
 /**
  *
  * @author amgjunior
+ * @author José Geraldo da Silva Júnior // edição
  */
 public class ControleVariavel {
     private ArrayList<Variavel> contvar;
@@ -10,8 +11,10 @@ public class ControleVariavel {
     public ControleVariavel() {
         contvar = new ArrayList<Variavel>();
     }
-    
-    
+
+    public ArrayList<Variavel> getContvar(){
+        return this.contvar;
+    }
     
     public boolean adiciona(Variavel v){
         for(int i=0; i<contvar.size(); i++){
@@ -37,12 +40,18 @@ public class ControleVariavel {
         }
         return false;
     }
+
+    public void remVar(int esc){
+        for(int i = 0; i < contvar.size(); i++){
+            if(contvar.get(i).getEscopo() == esc) contvar.remove(i);
+        }
+    }
     
     public void print(){
         for(int i=0; i<contvar.size(); i++){
             contvar.get(i).imprime();
             System.out.println("\n\n");
         }
-            
     }
+
 }

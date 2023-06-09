@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,23 +29,36 @@ public class Saida {
     private String soma = "+";
     private boolean epara = false;
     private boolean edo = false;
+    private int escopo = 0;
+    private String erro = "Houveram os seguintes erros: \n\t";
 
     
     public Saida(ControleVariavel cv){
         this.cv = cv;
     }
 
+    public void incEsco(){
+        ++this.escopo;
+        System.out.println("Escopo inicial: "+this.escopo);
+    }
+    public void decEsco(){
+        cv.remVar(this.escopo);
+        if(this.escopo > 0) --this.escopo;
+        System.out.println("Escopo final: "+this.escopo);
+    }
+
     public void fechaCond(String vl){
-        if(vl != null)
-        switch(vl){
+        if(vl != null){
+            switch(vl){
             case ";" -> this.escrever(pv);
             case "(" -> this.escrever(ap);
             case ")" -> this.escrever(fp);
             case "}" -> this.escrever(ac);
             case "{" -> this.escrever(fc);
-            default -> System.out.println("Simbolo inexistente, erro LÉXICO!");
+            default -> this.erro += "Simbolo inexistente, erro LÉXICO! \n";
         }
-        else System.out.println("Condição não finalizada, erro SINTÁTICO!");
+        }
+        else this.erro += "Condição não finalizada, erro SINTÁTICO! \n" + vl;
     }
 
     public void printInicio(){
@@ -66,10 +80,12 @@ public class Saida {
 
     public void atrbVar(String id, String valor, String pv){
         if(cv.jaExiste(id)){
+        if(cv.busca(id).getEscopo() == this.escopo || cv.busca(id).getEscopo() == 1){
             this.output = id+ws+eq+ws+valor;
             if(pv != null) this.output += pv;
             this.escrever(this.output);
-        }else System.out.println("Variavel"+ws+id+ws+"não existe!");
+        }else this.erro += "Variavel"+ws+id+ws+"não existe no escopo!";
+        }else this.erro += "Variavel"+ws+id+ws+"não existe!";
     }
 
     public void para(){
@@ -83,7 +99,7 @@ public class Saida {
         this.output = "while"+ap+comp+fp;
         this.escrever(this.output);
         this.comp = null;
-        }else System.out.println("Comparação não finalizada, erro sintático!");
+        }else this.erro += "Comparação não finalizada, erro sintático! \n";
     }
 
     public void faca(){
@@ -91,7 +107,7 @@ public class Saida {
         this.edo = true;
     }
     
-    public void variavel(String id, String tipo, int escopo, String valor){
+    public void variavel(String id, String tipo, String valor){
         if(!cv.jaExiste(id)){
             switch(tipo){
                 case "normal" -> output = inteiro;
@@ -99,13 +115,13 @@ public class Saida {
                 case "letra" -> output = letra;
                 case "ideia" -> output = ideia;
             }
-            cv.adiciona(new Variavel(id, tipo, escopo));
+            cv.adiciona(new Variavel(id, tipo, this.escopo));
             if(valor != null) {
                 this.output = output+ws+id+ws+eq+ws+valor+pv;
             }
             else this.output = output+ws+id+pv;
             this.escrever(output);
-        }else {System.out.println("Variável já existe!");}
+        }else this.erro += "Variável já existe no escopo! \n";
         
     };
     
@@ -120,7 +136,7 @@ public class Saida {
             this.escrever(this.output);
             this.comp = null;
         }
-        else System.out.println("Comparação com erro sintático");
+        else this.erro += "Comparação com erro sintático \n";
     };
     
     public void comp(String vl_a, String op, String vl_b, String pv){
@@ -132,6 +148,16 @@ public class Saida {
             this.comp = null;
             this.epara = false;
         }
+    }
+
+    public int escopo (){
+        int esc = 0;
+        ArrayList<Variavel> vars = cv.getContvar();
+        for(int i = 0; i < vars.size(); i++){
+            if(vars.get(i).getEscopo() >= esc) esc = vars.get(i).getEscopo();
+            else esc = esc;
+        }
+        return esc;
     }
     
     public void escrever(String frase) {
@@ -152,4 +178,11 @@ public class Saida {
         this.output = null;
     }
 
+    public void erros(){
+        if(this.erro == null){
+            System.out.println("Sem erros!");
+        }else {
+            System.out.println("Erros: \n"+this.erro);
+        }
+    }
 }

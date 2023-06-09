@@ -5,8 +5,8 @@ inicio {
         };
     do{
         letra b;
-    }enquanto(3 > 4);
-    para(normal i = 0;2 > 3; i = 0){
+    }enquanto(b > 4);
+    para(normal i = 0;i > 3; i = 0){
         
     };
     enquanto(5 <= 1){
