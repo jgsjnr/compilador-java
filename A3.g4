@@ -21,7 +21,7 @@ atrbVar: ID OP_ATR pri PV? {w.atrbVar($ID.text, $pri.text, $PV.text);};
 
 tipo: ('normal' | 'letra' | 'quebrado' | 'ideia');
 
-cond: SE AP comp FP {w.se();} bloco;
+cond: SE AP comp FP {w.se();} bloco else?;
 
 else: SENAO {w.senao();} bloco;
 
