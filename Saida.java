@@ -31,6 +31,7 @@ public class Saida {
     private boolean edo = false;
     private int escopo = 0;
     private String erro = "Houveram os seguintes erros: \n\t";
+    private boolean foise = false;
 
     
     public Saida(ControleVariavel cv){
@@ -135,9 +136,15 @@ public class Saida {
             this.output = "if"+ap+comp+fp;
             this.escrever(this.output);
             this.comp = null;
+            this.foise = true;
         }
         else this.erro += "Comparação com erro sintático \n";
     };
+
+    public void senao(){
+        if(this.foise) this.escrever("else");
+        else this.erro = "Erro no else, condição se não declarada";
+    }
     
     public void comp(String vl_a, String op, String vl_b, String pv){
         if(vl_a.equals(null) || op.equals(null) || vl_b.equals(null))this.comp = null;

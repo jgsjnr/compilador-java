@@ -23,6 +23,8 @@ tipo: ('normal' | 'letra' | 'quebrado' | 'ideia');
 
 cond: SE AP comp FP {w.se();} bloco;
 
+else: SENAO {w.senao();} bloco;
+
 for: PARA AP {w.para();} declararVar comp atrbVar FP {w.fechaCond($FP.text);} bloco;
 
 comp: pri OPREL seg PV? {w.comp($pri.text, $OPREL.text, $seg.text, $PV.text);};
