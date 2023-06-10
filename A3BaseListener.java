@@ -268,6 +268,30 @@ public class A3BaseListener implements A3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTexto(A3Parser.TextoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDescrito(A3Parser.DescritoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDescrito(A3Parser.DescritoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScan(A3Parser.ScanContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScan(A3Parser.ScanContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

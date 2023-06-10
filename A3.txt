@@ -1,4 +1,5 @@
 inicio{
+    scan;
     normal a;
     letra b;
     se(1 > 2){ 
@@ -16,8 +17,7 @@ inicio{
     };
     enquanto(a <= 1){
         b = 5;
-        ler("texto");
-        
     };
+    ler(b);
 }
 fim;

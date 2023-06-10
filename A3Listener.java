@@ -221,4 +221,24 @@ public interface A3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTexto(A3Parser.TextoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#descrito}.
+	 * @param ctx the parse tree
+	 */
+	void enterDescrito(A3Parser.DescritoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#descrito}.
+	 * @param ctx the parse tree
+	 */
+	void exitDescrito(A3Parser.DescritoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#scan}.
+	 * @param ctx the parse tree
+	 */
+	void enterScan(A3Parser.ScanContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#scan}.
+	 * @param ctx the parse tree
+	 */
+	void exitScan(A3Parser.ScanContext ctx);
 }

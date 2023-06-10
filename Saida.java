@@ -40,6 +40,28 @@ public class Saida {
 
     public void importacao(){
         this.escrever("import java.util.*;\n");
+        this.escrever("import java.util.Scanner;\n");
+        this.escrever("import java.io.*;\n");
+    }
+    public void scan(){
+        this.escrever("Scanner scan = new Scanner(System.in);\n");
+    }
+
+    public void ler(String id){
+        Variavel variavel = cv.busca(id);
+        switch(variavel.getTipo()){
+            case "normal" -> this.output = id+ws+eq+ws+"scan.nextInt()"+pv;
+            case "letra" -> this.output = id+ws+eq+ws+"scan.next().charAt(1)"+pv;
+            case "ideia" -> this.output = id+ws+eq+ws+"scan.nextLine()"+pv;
+            case "quebrado" -> this.output = id+ws+eq+ws+"scan.nextLine()"+pv;
+            default -> this.output = id+ws+eq+ws+"scan.nextLine()"+pv;
+        }
+        this.escrever(this.output);
+    }
+
+    public void escreve(String texto){
+        this.output = "System.out.println"+ap+texto+fp+pv;
+        this.escrever(this.output);
     }
 
     public void incEsco(){
@@ -50,10 +72,6 @@ public class Saida {
         cv.remVar(this.escopo);
         if(this.escopo > 0) --this.escopo;
         System.out.println("Escopo final: "+this.escopo);
-    }
-
-    public void leitor(){
-        //this.output;
     }
 
     public void fechaCond(String vl){
@@ -105,9 +123,9 @@ public class Saida {
 
     public void enquanto(){
         if(this.comp != null){
-        this.output = "while"+ap+comp+fp;
-        this.escrever(this.output);
-        this.comp = null;
+            this.output = "while"+ap+comp+fp;
+            this.escrever(this.output);
+            this.comp = null;
         }else this.erro += "Comparação não finalizada, erro sintático! \n";
     }
 
@@ -124,7 +142,7 @@ public class Saida {
                 case "letra" -> output = letra;
                 case "ideia" -> output = ideia;
             }
-            cv.adiciona(new Variavel(id, tipo, this.escopo));
+            cv.adiciona(new Variavel(id, tipo, this.escopo, valor));
             if(valor != null) {
                 this.output = output+ws+id+ws+eq+ws+valor+pv;
             }
@@ -154,6 +172,9 @@ public class Saida {
     }
     
     public void comp(String vl_a, String op, String vl_b, String pv){
+        if(cv.jaExiste(vl_a)){
+            if(cv.busca(vl_a).getEscopo() == this.escopo)if(cv.busca(vl_a).getValor() == null){this.erro += };
+        if(cv.jaExiste(vl_b))if(cv.busca(vl_b).getEscopo() == this.escopo)if(cv.busca(vl_b).getValor() == null);
         if(vl_a.equals(null) || op.equals(null) || vl_b.equals(null))this.comp = null;
         else this.comp = vl_a+ws+op+ws+vl_b;
         if(pv != null) this.comp += pv;

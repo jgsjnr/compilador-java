@@ -6,11 +6,13 @@ public class Variavel {
     private String nome;
     private String tipo;
     private int escopo;
+    private String valor;
 
-    public Variavel(String nome, String tipo, int escopo) {
+    public Variavel(String nome, String tipo, int escopo, String valor) {
         this.nome = nome;
         this.tipo = tipo;
         this.escopo = escopo;
+        this.valor = valor;
     }
 
     public Variavel() {

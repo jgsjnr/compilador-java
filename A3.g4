@@ -14,7 +14,7 @@ start: {w.limpaCodigo();} {w.importacao();} 'inicio' {w.printInicio();} bloco 'f
 
 bloco: {w.incEsco();} AC {w.bloco($AC.text);} declaracoes FC {w.bloco($FC.text);} PV? {w.bloco($PV.text);} {w.decEsco();};
 
-declaracoes: (declararVar | bloco | cond | dowhile | atrbVar | while | for | ler | escrever)*;
+declaracoes: (declararVar | bloco | cond | dowhile | atrbVar | while | for | ler | escrever | scan)*;
 
 declararVar: tipo ID OP_ATR? pri? PV {w.variavel($ID.text, $tipo.text, $pri.text);};
 
@@ -46,12 +46,17 @@ membfim: (pri | AP? calc FP?);
 
 op: (SOMA | SUB | DIV | MULT);
 
-ler: LER AP texto FP PV;
+ler: LER AP ID FP PV {w.ler($ID.text);};
 
-escrever: ESCREVER AP texto FP PV;
+escrever: ESCREVER AP texto FP PV {w.escreve($texto.text);};
 
-texto: ASPAS ID ASPAS;
+texto: ASPAS (descrito | pri) ASPAS;
 
+descrito: ASPAS pri ASPAS;
+
+scan: SCANNER PV {w.scan();};
+
+SCANNER: 'scan';
 LER: 'ler';
 ESCREVER: 'escrever';
 SOMA: '+';
