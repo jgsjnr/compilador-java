@@ -2,6 +2,7 @@
  
     import java.util.*;
     import java.io.*;
+    import java.util.Scanner;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -80,6 +81,18 @@ public class A3BaseListener implements A3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVlatrb(A3Parser.VlatrbContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVlatrb(A3Parser.VlatrbContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTipo(A3Parser.TipoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -99,6 +112,18 @@ public class A3BaseListener implements A3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCond(A3Parser.CondContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterElse(A3Parser.ElseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElse(A3Parser.ElseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -171,6 +196,78 @@ public class A3BaseListener implements A3Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWhile(A3Parser.WhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCalc(A3Parser.CalcContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCalc(A3Parser.CalcContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMembfim(A3Parser.MembfimContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMembfim(A3Parser.MembfimContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOp(A3Parser.OpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOp(A3Parser.OpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLer(A3Parser.LerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLer(A3Parser.LerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEscrever(A3Parser.EscreverContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEscrever(A3Parser.EscreverContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTexto(A3Parser.TextoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTexto(A3Parser.TextoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -2,6 +2,7 @@
  
     import java.util.*;
     import java.io.*;
+    import java.util.Scanner;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -61,6 +62,16 @@ public interface A3Listener extends ParseTreeListener {
 	 */
 	void exitAtrbVar(A3Parser.AtrbVarContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A3Parser#vlatrb}.
+	 * @param ctx the parse tree
+	 */
+	void enterVlatrb(A3Parser.VlatrbContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#vlatrb}.
+	 * @param ctx the parse tree
+	 */
+	void exitVlatrb(A3Parser.VlatrbContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A3Parser#tipo}.
 	 * @param ctx the parse tree
 	 */
@@ -80,6 +91,16 @@ public interface A3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCond(A3Parser.CondContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#else}.
+	 * @param ctx the parse tree
+	 */
+	void enterElse(A3Parser.ElseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#else}.
+	 * @param ctx the parse tree
+	 */
+	void exitElse(A3Parser.ElseContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A3Parser#for}.
 	 * @param ctx the parse tree
@@ -140,4 +161,64 @@ public interface A3Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWhile(A3Parser.WhileContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#calc}.
+	 * @param ctx the parse tree
+	 */
+	void enterCalc(A3Parser.CalcContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#calc}.
+	 * @param ctx the parse tree
+	 */
+	void exitCalc(A3Parser.CalcContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#membfim}.
+	 * @param ctx the parse tree
+	 */
+	void enterMembfim(A3Parser.MembfimContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#membfim}.
+	 * @param ctx the parse tree
+	 */
+	void exitMembfim(A3Parser.MembfimContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#op}.
+	 * @param ctx the parse tree
+	 */
+	void enterOp(A3Parser.OpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#op}.
+	 * @param ctx the parse tree
+	 */
+	void exitOp(A3Parser.OpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#ler}.
+	 * @param ctx the parse tree
+	 */
+	void enterLer(A3Parser.LerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#ler}.
+	 * @param ctx the parse tree
+	 */
+	void exitLer(A3Parser.LerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#escrever}.
+	 * @param ctx the parse tree
+	 */
+	void enterEscrever(A3Parser.EscreverContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#escrever}.
+	 * @param ctx the parse tree
+	 */
+	void exitEscrever(A3Parser.EscreverContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#texto}.
+	 * @param ctx the parse tree
+	 */
+	void enterTexto(A3Parser.TextoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#texto}.
+	 * @param ctx the parse tree
+	 */
+	void exitTexto(A3Parser.TextoContext ctx);
 }

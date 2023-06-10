@@ -30,12 +30,16 @@ public class Saida {
     private boolean epara = false;
     private boolean edo = false;
     private int escopo = 0;
-    private String erro = "Houveram os seguintes erros: \n\t";
+    private String erro = "Houveram os seguintes erros: \n";
     private boolean foise = false;
 
     
     public Saida(ControleVariavel cv){
         this.cv = cv;
+    }
+
+    public void importacao(){
+        this.escrever("import java.util.*;\n");
     }
 
     public void incEsco(){
@@ -46,6 +50,10 @@ public class Saida {
         cv.remVar(this.escopo);
         if(this.escopo > 0) --this.escopo;
         System.out.println("Escopo final: "+this.escopo);
+    }
+
+    public void leitor(){
+        //this.output;
     }
 
     public void fechaCond(String vl){
@@ -122,8 +130,7 @@ public class Saida {
             }
             else this.output = output+ws+id+pv;
             this.escrever(output);
-        }else this.erro += "Variável já existe no escopo! \n";
-        
+        }else this.erro += "Variável "+id+" já foi declarada no escopo "+cv.busca(id).getEscopo()+"\n";
     };
     
     public void bloco(String valor){
@@ -154,6 +161,16 @@ public class Saida {
             this.escrever(this.comp);
             this.comp = null;
             this.epara = false;
+        }
+    }
+
+    public void calc(String membini, String op, String membfim, String pv){
+        if(membini == null || op == null || membfim == null){
+            this.erro += "Condiação incompleta no calculo \n";
+        }else {
+            if(this.epara) this.output = membini+ws+op+membfim;
+            else this.output = membini+ws+op+membfim+pv;
+            this.escrever(this.output);
         }
     }
 

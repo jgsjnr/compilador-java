@@ -1,16 +1,23 @@
-inicio {
-    normal inteiro;
+inicio{
+    normal a;
+    letra b;
     se(1 > 2){ 
-        letra chave; 
+        letra chaveAZ; 
+        } senao{
+            letra z;
+            escrever("texto");
         };
     do{
         letra b;
     }enquanto(b > 4);
-    para(normal i = 0;i > 3; i = 0){
-        
+    para(normal i = 0;i > 3; i = i+1){
+        normal x;
+        x = 5+3+2/3;
     };
-    enquanto(5 <= 1){
+    enquanto(a <= 1){
         b = 5;
+        ler("texto");
+        
     };
 }
 fim;

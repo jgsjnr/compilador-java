@@ -1,15 +1,18 @@
+import java.util.*;
 public class Codigo{ 
 public static void main(String args[]){
-int inteiro;if(1 > 2){
-char chave;}
+int a;char b;if(1 > 2){
+char chaveAZ;}
+else{
+char z;}
 ;
 do{
-char b;}
-while(b > 4);for(int i = 0;i > 3;i = 0){
 }
+while(b > 4);for(int i = 0;i > 3;i = i+1){
+int x;x = 5+3+2/3;}
 ;
-while(5 <= 1){
-}
+while(a <= 1){
+b = 5;}
 ;
 }
 
