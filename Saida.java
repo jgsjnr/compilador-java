@@ -173,8 +173,20 @@ public class Saida {
     
     public void comp(String vl_a, String op, String vl_b, String pv){
         if(cv.jaExiste(vl_a)){
-            if(cv.busca(vl_a).getEscopo() == this.escopo)if(cv.busca(vl_a).getValor() == null){this.erro += };
-        if(cv.jaExiste(vl_b))if(cv.busca(vl_b).getEscopo() == this.escopo)if(cv.busca(vl_b).getValor() == null);
+            if(cv.busca(vl_a).getEscopo() == this.escopo){
+                if(cv.busca(vl_a).getValor() == null){
+                    this.erro += "Variavel "+vl_a+" não incializada";
+                    return;
+                    }
+            }
+        }if(cv.jaExiste(vl_b)){
+            if(cv.busca(vl_b).getEscopo() == this.escopo){
+                if(cv.busca(vl_b).getValor() == null){
+                    this.erro += "Variavel "+vl_b+" não incializada";
+                    return;
+                    }
+            }
+        }
         if(vl_a.equals(null) || op.equals(null) || vl_b.equals(null))this.comp = null;
         else this.comp = vl_a+ws+op+ws+vl_b;
         if(pv != null) this.comp += pv;
