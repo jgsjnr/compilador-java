@@ -19,7 +19,7 @@ public class Variavel {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -27,7 +27,7 @@ public class Variavel {
     }
 
     public String getTipo() {
-        return tipo;
+        return this.tipo;
     }
 
     public void setTipo(String tipo) {
@@ -35,11 +35,15 @@ public class Variavel {
     }
 
     public int getEscopo() {
-        return escopo;
+        return this.escopo;
     }
 
     public void setEscopo(int escopo) {
         this.escopo = escopo;
+    }
+
+    public String getValor(){
+        return this.valor;
     }
     
     public void imprime(){

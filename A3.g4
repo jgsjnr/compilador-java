@@ -40,11 +40,21 @@ dowhile: DO {w.faca();} bloco WHILE AP comp FP PV? {w.enquanto(); w.fechaCond($P
 
 while: WHILE AP comp FP {w.enquanto();} bloco PV? {w.fechaCond($PV.text);};
 
-calc: pri op membfim PV?;
+calc: op (membfim | cont_op | PV?);
 
-membfim: (pri | AP? calc FP?);
+membfim: (pri | calc) {w.coletaOp($pri.text);};
 
-op: (SOMA | SUB | DIV | MULT);
+op: (aritm | geo);
+
+aritm: pri op_aritm {w.coletaOp($pri.text);};
+
+geo: AP pri op_geo membfim FP {w.coletaOp($pri.text);};
+
+cont_op: op_aritm calc;
+
+op_aritm: (SOMA | SUB);
+
+op_geo: (DIV | MULT);
 
 ler: LER AP ID FP PV {w.ler($ID.text);};
 

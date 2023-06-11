@@ -30,8 +30,9 @@ public class Saida {
     private boolean epara = false;
     private boolean edo = false;
     private int escopo = 0;
-    private String erro = "Houveram os seguintes erros: \n";
+    private String erro = "Houveram os seguintes erros ou waring ou info: \n";
     private boolean foise = false;
+    private ArrayList<Variavel> retorno = new ArrayList<Variavel>();
 
     
     public Saida(ControleVariavel cv){
@@ -175,14 +176,14 @@ public class Saida {
         if(cv.jaExiste(vl_a)){
             if(cv.busca(vl_a).getEscopo() == this.escopo){
                 if(cv.busca(vl_a).getValor() == null){
-                    this.erro += "Variavel "+vl_a+" não incializada";
+                    this.erro += "Variavel "+vl_a+" não incializada\n";
                     return;
                     }
             }
         }if(cv.jaExiste(vl_b)){
             if(cv.busca(vl_b).getEscopo() == this.escopo){
                 if(cv.busca(vl_b).getValor() == null){
-                    this.erro += "Variavel "+vl_b+" não incializada";
+                    this.erro += "Variavel "+vl_b+" não incializada\n";
                     return;
                     }
             }
@@ -215,6 +216,28 @@ public class Saida {
             else esc = esc;
         }
         return esc;
+    }
+
+    public ArrayList<Variavel> coletaOp(String id){
+        if(cv.jaExiste(id)) retorno.add(cv.busca(id));
+        return this.retorno;
+    }
+
+    public void validaOp(String id){
+        Variavel idatbr = null;
+        if(cv.jaExiste(id)) idatbr = cv.busca(id); else {this.erro += "Variavel "+id+" Não existe!\n"; this.retorno.clear(); return; };
+        for(int i = 0; i < this.retorno.size(); ++i){
+            if(this.retorno.get(i).getNome() == idatbr.getNome()){
+                if(this.retorno.get(i).getEscopo() != idatbr.getEscopo() || this.retorno.get(i).getEscopo() != 1){
+                    this.erro += "Escopo da variavel não é global ou local!\n";
+                    this.retorno.clear();
+                }else if(this.retorno.get(i).getTipo() != idatbr.getTipo()){
+                    this.erro += "Variavel não pode ser atribuida na operação, tipos de dados diferentes!\n";
+                    this.retorno.clear();
+                }
+            }
+        }
+        this.retorno.clear();
     }
     
     public void escrever(String frase) {

@@ -192,6 +192,56 @@ public interface A3Listener extends ParseTreeListener {
 	 */
 	void exitOp(A3Parser.OpContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A3Parser#aritm}.
+	 * @param ctx the parse tree
+	 */
+	void enterAritm(A3Parser.AritmContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#aritm}.
+	 * @param ctx the parse tree
+	 */
+	void exitAritm(A3Parser.AritmContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#geo}.
+	 * @param ctx the parse tree
+	 */
+	void enterGeo(A3Parser.GeoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#geo}.
+	 * @param ctx the parse tree
+	 */
+	void exitGeo(A3Parser.GeoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#cont_op}.
+	 * @param ctx the parse tree
+	 */
+	void enterCont_op(A3Parser.Cont_opContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#cont_op}.
+	 * @param ctx the parse tree
+	 */
+	void exitCont_op(A3Parser.Cont_opContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#op_aritm}.
+	 * @param ctx the parse tree
+	 */
+	void enterOp_aritm(A3Parser.Op_aritmContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#op_aritm}.
+	 * @param ctx the parse tree
+	 */
+	void exitOp_aritm(A3Parser.Op_aritmContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A3Parser#op_geo}.
+	 * @param ctx the parse tree
+	 */
+	void enterOp_geo(A3Parser.Op_geoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#op_geo}.
+	 * @param ctx the parse tree
+	 */
+	void exitOp_geo(A3Parser.Op_geoContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A3Parser#ler}.
 	 * @param ctx the parse tree
 	 */
