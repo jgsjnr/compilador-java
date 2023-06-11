@@ -22,7 +22,7 @@ atrbVar: ID OP_ATR vlatrb PV? {w.atrbVar($ID.text, $vlatrb.text, $PV.text);};
 
 vlatrb: (pri | calc);
 
-tipo: ('normal' | 'letra' | 'quebrado' | 'ideia');
+tipo: (INT | FLOAT | CHAR | STRING);
 
 cond: SE AP comp FP {w.se();} bloco else?;
 
@@ -60,12 +60,16 @@ ler: LER AP ID FP PV {w.ler($ID.text);};
 
 escrever: ESCREVER AP texto FP PV {w.escreve($texto.text);};
 
-texto: ASPAS (descrito | pri) ASPAS;
+texto: (pri | descrito);
 
 descrito: ASPAS TX ASPAS;
 
 scan: SCANNER PV {w.scan();};
 
+INT: 'normal';
+FLOAT: 'qubrado';
+CHAR: 'letra';
+STRING: 'ideia';
 SCANNER: 'scan';
 LER: 'ler';
 ESCREVER: 'escrever';
@@ -92,8 +96,9 @@ ASPAS: '"';
 ID: AZMIN+(AZMIN|AZMAI|DIGIT|'_')*;
 DG: DIGIT+'.'?DIGIT*;
 VL: ID | DIGIT;
+TX:((AZMIN|AZMAI|DIGIT)+(AZMIN|AZMAI|DIGIT|'_'|'-')*)+;
 WS: WHITESPACE+ -> skip;
-TX:(AZMIN|AZMAI|DIGIT)+(AZMIN|AZMAI|DIGIT|'_'|' '|'-')*;
+
 
 fragment AZMIN: [a-z];
 fragment AZMAI: [A-Z];
