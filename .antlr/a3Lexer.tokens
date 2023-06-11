@@ -29,6 +29,7 @@ ID=28
 DG=29
 VL=30
 WS=31
+TX=32
 'normal'=1
 'letra'=2
 'quebrado'=3

@@ -24,7 +24,7 @@ public class A3Parser extends Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, SCANNER=5, LER=6, ESCREVER=7, SOMA=8, 
 		SUB=9, DIV=10, MULT=11, INICIO=12, FIM=13, OPREL=14, COMENTARIO=15, OP_ATR=16, 
 		WHILE=17, DO=18, PARA=19, SE=20, SENAO=21, AC=22, FC=23, AP=24, FP=25, 
-		PV=26, ASPAS=27, ID=28, DG=29, VL=30, WS=31;
+		PV=26, ASPAS=27, ID=28, DG=29, VL=30, WS=31, TX=32;
 	public static final int
 		RULE_start = 0, RULE_bloco = 1, RULE_declaracoes = 2, RULE_declararVar = 3, 
 		RULE_atrbVar = 4, RULE_vlatrb = 5, RULE_tipo = 6, RULE_cond = 7, RULE_else = 8, 
@@ -57,7 +57,7 @@ public class A3Parser extends Parser {
 			null, null, null, null, null, "SCANNER", "LER", "ESCREVER", "SOMA", "SUB", 
 			"DIV", "MULT", "INICIO", "FIM", "OPREL", "COMENTARIO", "OP_ATR", "WHILE", 
 			"DO", "PARA", "SE", "SENAO", "AC", "FC", "AP", "FP", "PV", "ASPAS", "ID", 
-			"DG", "VL", "WS"
+			"DG", "VL", "WS", "TX"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -1518,9 +1518,7 @@ public class A3Parser extends Parser {
 		public TerminalNode ASPAS(int i) {
 			return getToken(A3Parser.ASPAS, i);
 		}
-		public PriContext pri() {
-			return getRuleContext(PriContext.class,0);
-		}
+		public TerminalNode TX() { return getToken(A3Parser.TX, 0); }
 		public DescritoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1536,7 +1534,7 @@ public class A3Parser extends Parser {
 			setState(233);
 			match(ASPAS);
 			setState(234);
-			pri();
+			match(TX);
 			setState(235);
 			match(ASPAS);
 			}
@@ -1586,7 +1584,7 @@ public class A3Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3!\u00f4\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"\u00f4\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -1657,7 +1655,7 @@ public class A3Parser extends Parser {
 		"\7\34\2\2\u00e2\u00e3\b\32\1\2\u00e3\63\3\2\2\2\u00e4\u00e7\7\35\2\2\u00e5"+
 		"\u00e8\5\66\34\2\u00e6\u00e8\5\30\r\2\u00e7\u00e5\3\2\2\2\u00e7\u00e6"+
 		"\3\2\2\2\u00e8\u00e9\3\2\2\2\u00e9\u00ea\7\35\2\2\u00ea\65\3\2\2\2\u00eb"+
-		"\u00ec\7\35\2\2\u00ec\u00ed\5\30\r\2\u00ed\u00ee\7\35\2\2\u00ee\67\3\2"+
+		"\u00ec\7\35\2\2\u00ec\u00ed\7\"\2\2\u00ed\u00ee\7\35\2\2\u00ee\67\3\2"+
 		"\2\2\u00ef\u00f0\7\7\2\2\u00f0\u00f1\7\34\2\2\u00f1\u00f2\b\35\1\2\u00f2"+
 		"9\3\2\2\2\22KZ\\bent\177\u0093\u00a3\u00ae\u00b6\u00b8\u00bc\u00c2\u00e7";
 	public static final ATN _ATN =

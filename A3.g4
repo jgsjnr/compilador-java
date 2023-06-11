@@ -62,7 +62,7 @@ escrever: ESCREVER AP texto FP PV {w.escreve($texto.text);};
 
 texto: ASPAS (descrito | pri) ASPAS;
 
-descrito: ASPAS pri ASPAS;
+descrito: ASPAS TX ASPAS;
 
 scan: SCANNER PV {w.scan();};
 
@@ -93,6 +93,7 @@ ID: AZMIN+(AZMIN|AZMAI|DIGIT|'_')*;
 DG: DIGIT+'.'?DIGIT*;
 VL: ID | DIGIT;
 WS: WHITESPACE+ -> skip;
+TX:(AZMIN|AZMAI|DIGIT)+(AZMIN|AZMAI|DIGIT|'_'|' '|'-')*;
 
 fragment AZMIN: [a-z];
 fragment AZMAI: [A-Z];
