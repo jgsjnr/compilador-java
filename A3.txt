@@ -1,7 +1,7 @@
 inicio{
     scan;
-    normal a;
-    letra b;
+    normal a = 1;
+    ideia b = "Azds";
     se(1 > 2){ 
         letra chaveAZ; 
         } senao{
@@ -16,7 +16,7 @@ inicio{
         x = 5+3+(2/3);
     };
     enquanto(a <= 1){
-        b = 5;
+        b = "ABC";
     };
     ler(b);
 }

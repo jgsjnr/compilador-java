@@ -72,6 +72,16 @@ public interface A3Listener extends ParseTreeListener {
 	 */
 	void exitVlatrb(A3Parser.VlatrbContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A3Parser#str}.
+	 * @param ctx the parse tree
+	 */
+	void enterStr(A3Parser.StrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A3Parser#str}.
+	 * @param ctx the parse tree
+	 */
+	void exitStr(A3Parser.StrContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A3Parser#tipo}.
 	 * @param ctx the parse tree
 	 */

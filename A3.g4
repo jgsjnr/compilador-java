@@ -16,11 +16,13 @@ bloco: {w.incEsco();} AC {w.bloco($AC.text);} declaracoes FC {w.bloco($FC.text);
 
 declaracoes: (declararVar | bloco | cond | dowhile | atrbVar | while | for | ler | escrever | scan)*;
 
-declararVar: tipo ID OP_ATR? pri? PV {w.variavel($ID.text, $tipo.text, $pri.text);};
+declararVar: tipo ID OP_ATR? vlatrb? PV {w.variavel($ID.text, $tipo.text, $vlatrb.text);};
 
 atrbVar: ID OP_ATR vlatrb PV? {w.atrbVar($ID.text, $vlatrb.text, $PV.text);};
 
-vlatrb: (pri | calc);
+vlatrb: (str | pri | calc);
+
+str: ASPAS TX ASPAS;
 
 tipo: (INT | FLOAT | CHAR | STRING);
 
@@ -36,7 +38,7 @@ pri: (ID | DG);
 
 seg: (ID | DG);
 
-dowhile: DO {w.faca();} bloco WHILE AP comp FP PV? {w.enquanto(); w.fechaCond($PV.text);};
+dowhile: DO {w.faca();} bloco WHILE AP comp FP PV? {w.enquanto();} {w.fechaCond($PV.text);};
 
 while: WHILE AP comp FP {w.enquanto();} bloco PV? {w.fechaCond($PV.text);};
 
@@ -67,7 +69,7 @@ descrito: ASPAS TX ASPAS;
 scan: SCANNER PV {w.scan();};
 
 INT: 'normal';
-FLOAT: 'qubrado';
+FLOAT: 'quebrado';
 CHAR: 'letra';
 STRING: 'ideia';
 SCANNER: 'scan';

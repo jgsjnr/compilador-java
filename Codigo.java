@@ -4,19 +4,19 @@ import java.io.*;
 public class Codigo{ 
 public static void main(String args[]){
 Scanner scan = new Scanner(System.in);
-int a;char b;if(1 > 2){
+int a = 1;String b = "Azds";if(1 > 2){
 char chaveAZ;}
 else{
 char z;System.out.println("texto-abc");}
 ;
 do{
 }
-;for(int i = 0;i > 3;i = i+1){
+while(a > 4);for(int i = 0;i > 3;i = i+1){
 int x;x = 5+3+(2/3);}
 ;
-{
-b = 5;}
+while(a <= 1){
+b = "ABC";}
 ;
-b = scan.next().charAt(1);}
+b = scan.nextLine();}
 
 }
