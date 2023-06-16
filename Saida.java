@@ -86,6 +86,7 @@ public class Saida {
             default -> this.erro += "Simbolo inexistente, erro LÉXICO! \n";
         }
         }
+        else if(this.edo) return;
         else this.erro += "Condição não finalizada, erro SINTÁTICO! \n" + vl;
     }
 

@@ -11,7 +11,7 @@ char z;System.out.println("texto-abc");}
 ;
 do{
 }
-while(a > 4);for(int i = 0;i > 3;i = i+1){
+while(b > 4);for(int i = 0;i > 3;i = i+1){
 int x;x = 5+3+(2/3);}
 ;
 while(a <= 1){
