@@ -2,22 +2,51 @@ inicio{
     scan;
     normal a = 1;
     ideia b = "Azds";
+    quebrado c = 1.5;
+    letra yAb = 'a';
+    quebrado k;
     se(1 > 2){ 
+        k = a+(5/2);
         letra chaveAZ; 
         } senao{
+            quebrado a = 1.2;
             letra z;
-            escrever("texto-abc");
+            k = a-(5/2);
+            escrever("texto abc - _ ");
+            ler(z);
+            escrever(z);
         };
     do{
-        letra b;
-    }enquanto(b > 4);
+        normal b;
+        a = 0;
+        escrever("Testando 123");
+    }enquanto(a > 4);
     para(normal i = 0;i > 3; i = i+1){
         normal x;
         x = 5+3+(2/3);
+        k = (5/5);
+        escrever(x);
+        i = i+1;
+        x = 1+1;
+        escrever("Testando 321");
+        se(k > 2){ 
+            k = a+(5/2);
+        } senao{
+            quebrado a = 1.2;
+            letra z;
+            k = a-(5/2);
+            escrever("texto abc - _ ");
+            ler(z);
+            escrever(z);
+        };
     };
     enquanto(a <= 1){
         b = "ABC";
+        a = a+2;
+        escrever(a);
     };
     ler(b);
+    escrever(k);
+    escrever(b);
 }
 fim;

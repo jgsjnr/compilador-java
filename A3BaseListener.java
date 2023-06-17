@@ -93,18 +93,6 @@ public class A3BaseListener implements A3Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStr(A3Parser.StrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStr(A3Parser.StrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterTipo(A3Parser.TipoContext ctx) { }
 	/**
 	 * {@inheritDoc}

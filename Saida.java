@@ -21,6 +21,7 @@ public class Saida {
     private String ideia = "String";
     private String letra = "char";
     private String floating = "float";
+    private String f = "f";
     private String pv = ";";
     private String novaLinha = "\n";
     private String tabulacao = "\t";
@@ -52,7 +53,7 @@ public class Saida {
         Variavel variavel = cv.busca(id);
         switch(variavel.getTipo()){
             case "normal" -> this.output = id+ws+eq+ws+"scan.nextInt()"+pv;
-            case "letra" -> this.output = id+ws+eq+ws+"scan.next().charAt(1)"+pv;
+            case "letra" -> this.output = id + ws + eq + ws + "scan.next().charAt(0)" + pv;
             case "ideia" -> this.output = id+ws+eq+ws+"scan.nextLine()"+pv;
             case "quebrado" -> this.output = id+ws+eq+ws+"scan.nextLine()"+pv;
             default -> this.output = id+ws+eq+ws+"scan.nextLine()"+pv;
@@ -107,7 +108,18 @@ public class Saida {
         }
     }
 
+    public void validaAtrb(String valor) {
+        if (valor != null) {
+            char sub = valor.charAt(0);
+            if (sub == '"')
+                System.out.println(valor + " é String \n");
+            else
+                System.out.println(valor + " não é String \n");
+        }
+    }
+
     public void atrbVar(String id, String valor, String pv){
+        validaAtrb(valor);
         if(cv.jaExiste(id)){
         if(cv.busca(id).getEscopo() == this.escopo || cv.busca(id).getEscopo() == 1){
             this.output = id+ws+eq+ws+valor;
@@ -137,6 +149,7 @@ public class Saida {
     }
     
     public void variavel(String id, String tipo, String valor){
+        validaAtrb(valor);
         if(!cv.jaExiste(id)){
             switch(tipo){
                 case "normal" -> output = inteiro;
@@ -146,7 +159,11 @@ public class Saida {
             }
             cv.adiciona(new Variavel(id, tipo, this.escopo, valor));
             if(valor != null) {
-                this.output = output+ws+id+ws+eq+ws+valor+pv;
+                System.out.println(tipo);
+                if (tipo.equals("quebrado"))
+                    this.output = output + ws + id + ws + eq + ws + valor + f + pv;
+                else
+                    this.output = output + ws + id + ws + eq + ws + valor + pv;
             }
             else this.output = output+ws+id+pv;
             this.escrever(output);
@@ -154,7 +171,8 @@ public class Saida {
     };
     
     public void bloco(String valor){
-        if(valor != null)this.escrever(valor+this.novaLinha);
+        if (valor != null)
+            this.escrever(valor);
         else return;
     };
 

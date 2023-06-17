@@ -20,9 +20,7 @@ declararVar: tipo ID OP_ATR? vlatrb? PV {w.variavel($ID.text, $tipo.text, $vlatr
 
 atrbVar: ID OP_ATR vlatrb PV? {w.atrbVar($ID.text, $vlatrb.text, $PV.text);};
 
-vlatrb: (str | pri | calc);
-
-str: ASPAS TX ASPAS;
+vlatrb: (CH | TX | pri | calc);
 
 tipo: (INT | FLOAT | CHAR | STRING);
 
@@ -64,7 +62,7 @@ escrever: ESCREVER AP texto FP PV {w.escreve($texto.text);};
 
 texto: (pri | descrito);
 
-descrito: ASPAS TX ASPAS;
+descrito: TX;
 
 scan: SCANNER PV {w.scan();};
 
@@ -98,7 +96,18 @@ ASPAS: '"';
 ID: AZMIN+(AZMIN|AZMAI|DIGIT|'_')*;
 DG: DIGIT+'.'?DIGIT*;
 VL: ID | DIGIT;
-TX:((AZMIN|AZMAI|DIGIT)+(AZMIN|AZMAI|DIGIT|'_'|'-')*)+;
+TX:
+	'"' (
+		(AZMIN | AZMAI | DIGIT)+ (
+			AZMIN
+			| AZMAI
+			| DIGIT
+			| '_'
+			| '-'
+			| ' '
+		)*
+	)+ '"';
+CH: '\'' (AZMIN | AZMAI | DIGIT) '\'';
 WS: WHITESPACE+ -> skip;
 
 
